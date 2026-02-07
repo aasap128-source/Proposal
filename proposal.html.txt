@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Mur Pwli 🤍</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #f8cdda, #fbd3e9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Segoe UI', sans-serif;
+        text-align: center;
+    }
+
+    .card {
+        background: white;
+        padding: 30px;
+        border-radius: 22px;
+        width: 90%;
+        max-width: 420px;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+        color: #c2185b;
+        margin-bottom: 12px;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: 18px;
+        color: #444;
+        min-height: 90px;
+        line-height: 1.4;
+        white-space: pre-line;
+    }
+
+    .btns {
+        margin-top: 25px;
+        position: relative;
+        height: 90px;
+    }
+
+    button {
+        padding: 12px 26px;
+        border-radius: 30px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    #yes {
+        background: #c2185b;
+        color: white;
+    }
+
+    #no {
+        background: #ddd;
+        color: #333;
+        position: absolute;
+        left: 55%;
+    }
+
+    .music-btn {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #666;
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Calm Background Music -->
+<audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/10/09/audio_6d4c0c6d2f.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+    <h1>Hey mur pwli 🤍</h1>
+    <p id="question"></p>
+
+    <div class="btns">
+        <button id="yes" onclick="yesClicked()">Yes</button>
+        <button id="no" onmouseover="moveNo()">No</button>
+    </div>
+
+    <div class="music-btn" onclick="playMusic()">
+        🎵 tap once for music
+    </div>
+</div>
+
+<script>
+    const questions = [
+        "Do you remember college week?",
+        "That small art exhibition shop 🎨",
+        "That was the first time I saw you",
+        "And honestly… everything else faded",
+        "I didn’t plan it, mur pwli",
+        "My heart just chose you quietly",
+        "Since that day, you stayed in my thoughts",
+        "In the calm moments… and the chaos too",
+        "Nargis Parbin, my Anarkali 🤍",
+        "Mur pwli… this is your kiddo.\nWill you choose me once again?"
+    ];
+
+    let index = 0;
+    const music = document.getElementById("bgMusic");
+
+    function playMusic() {
+        music.play();
+    }
+
+    // iOS requires user interaction
+    window.addEventListener("click", () => {
+        music.play();
+    }, { once: true });
+
+    function showQuestion() {
+        document.getElementById("question").innerText = questions[index];
+    }
+
+    showQuestion();
+
+    function yesClicked() {
+        if (index < questions.length - 1) {
+            index++;
+            showQuestion();
+        } else {
+            document.querySelector(".card").innerHTML = `
+                <h1>She chose me 🤍</h1>
+                <p>
+                    My mur pwli,<br><br>
+                    thank you for choosing me once again.<br>
+                    I promise patience,<br>
+                    gentle love,<br>
+                    and a heart that stays.<br><br>
+                    Always your kiddo 🤍
+                </p>
+            `;
+        }
+    }
+
+    function moveNo() {
+        const noBtn = document.getElementById("no");
+        const x = Math.random() * 220 - 110;
+        const y = Math.random() * 120 - 60;
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+</script>
+
+</body>
+</html>
